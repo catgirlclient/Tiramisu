@@ -1,0 +1,49 @@
+[versions]
+binary-compatibility-validator = "0.16.3" # https://github.com/Kotlin/binary-compatibility-validator
+dokka = "2.0.0-Beta" # https://github.com/Kotlin/dokka
+kotlin = "2.0.21" # https://github.com/JetBrains/kotlin
+kotlin-coroutines = "1.9.0" # https://github.com/Kotlin/kotlinx.coroutines
+kotlin-serialization = "1.7.3" # https://github.com/Kotlin/kotlinx.serialization
+ksp = "2.0.21-1.0.26" # https://github.com/google/ksp
+scylladb-driver = "4.18.0.1" # https://github.com/scylladb/java-driver
+shadow = "8.3.5"
+slf4j = "2.0.16"
+
+[libraries]
+kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
+
+# Logger
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+
+# ScyllaDB's drivers supports both cassandra and scylla, no point in adding cassandra's independent dependency
+scylladb-driver-core = { module = "com.scylladb:java-driver-core", version.ref = "scylladb-driver" }
+scylladb-driver-query-builder = { module = "com.scylladb:java-driver-query-builder", version.ref = "scylladb-driver" }
+scylladb-driver-mapper-runtime = { module = "com.scylladb:java-driver-mapper-runtime", version.ref = "scylladb-driver" }
+
+binary-compatibility-validator-plugin = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
+dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+kotlin-jvm-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+ksp-plugin = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
+shadow = { module = "com.gradleup.shadow:shadow-gradle-plugin", version.ref = "shadow" }
+
+[bundles]
+logger = ["slf4j-api", "slf4j-simple"]
+
+database = [
+    "scylladb-driver-core",
+    "scylladb-driver-query-builder",
+    "scylladb-driver-mapper-runtime"
+]
+
+buildLogic = [
+    "binary-compatibility-validator-plugin",
+    "dokka-plugin",
+    "kotlin-jvm-plugin",
+    "kotlin-serialization-plugin",
+    "ksp-plugin",
+    "shadow"
+]
+
