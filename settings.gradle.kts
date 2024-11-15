@@ -22,5 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "tiramisu"
 
-include(":core")
+include(":core", ":example")
 

@@ -1,4 +1,4 @@
-# Kassandra
+# Tiramisu
 A kotlin wrapper around the Cassandra & ScyllaDB.
 
 ## Notes
