@@ -1,6 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
+    includeBuild("build-logic")
+
     plugins {
         id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
     }
@@ -23,9 +25,11 @@ rootProject.name = "DiscordInteraKTions"
 
 include(
     ":bom",
+    ":core",
     ":sample",
     ":common",
     ":requests-verifier",
+    ":platforms:gateway-jda",
     ":platforms:gateway-kord",
     ":platforms:webserver-ktor-kord",
 )

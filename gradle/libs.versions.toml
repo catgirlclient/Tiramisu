@@ -1,4 +1,5 @@
 [versions]
+jda = "5.3.0"
 kotlin = "2.1.10"
 kord = "0.16.0-SNAPSHOT"
 dokka = "2.0.0"
@@ -10,6 +11,8 @@ kotlin-logging = "7.0.4"
 logback = "1.5.16"
 
 [libraries]
+jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
+
 kord-core = { module = "dev.kord:kord-core", version.ref = "kord" }
 kord-rest = { module = "dev.kord:kord-rest", version.ref = "kord" }
 kord-common = { module = "dev.kord:kord-common", version.ref = "kord" }
@@ -28,6 +31,12 @@ kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 binary-compatibility-validator-plugin = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
+
+[plugins]
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator"}
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
 [bundles]
 buildSrc = [

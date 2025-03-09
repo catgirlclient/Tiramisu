@@ -10,40 +10,33 @@ import kotlin.contracts.contract
 public fun ActionRowBuilder.channelSelect(
     executor: SelectMenuExecutorDeclaration,
     data: String,
-    builder: ChannelSelectBuilder.() -> (Unit)
+    builder: ChannelSelectBuilder.() -> (Unit) = {}
 ) {
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
     channelSelect(
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
-    }
+        "${executor.id}:$data", builder)
 }
 
 @OptIn(ExperimentalContracts::class)
 public fun ActionRowBuilder.channelSelect(
     executor: SelectMenuExecutorDeclaration,
-    builder: ChannelSelectBuilder.() -> (Unit)
+    builder: ChannelSelectBuilder.() -> (Unit) = {}
 ) {
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    channelSelect(
-        executor.id
-    ) {
-        builder.invoke(this)
-    }
+    channelSelect(executor.id, builder)
 }
 
 @OptIn(ExperimentalContracts::class)
 public fun ActionRowBuilder.interactiveButton(
     style: ButtonStyle,
     executor: ButtonExecutorDeclaration,
-    builder: ButtonBuilder.InteractionButtonBuilder.() -> Unit
+    builder: ButtonBuilder.InteractionButtonBuilder.() -> (Unit)
 ) {
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
@@ -51,12 +44,7 @@ public fun ActionRowBuilder.interactiveButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        executor.id
-    ) {
-        builder.invoke(this)
-    }
+    interactionButton(style, executor.id, builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -64,7 +52,7 @@ public fun ActionRowBuilder.interactionButton(
     style: ButtonStyle,
     label: String,
     executor: ButtonExecutorDeclaration,
-    builder: ButtonBuilder.InteractionButtonBuilder.() -> Unit = {}
+    builder: ButtonBuilder.InteractionButtonBuilder.() -> (Unit) = {}
 ) {
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
@@ -86,7 +74,7 @@ public fun ActionRowBuilder.interactionButton(
     style: ButtonStyle,
     executor: ButtonExecutorDeclaration,
     data: String,
-    builder: ButtonBuilder.InteractionButtonBuilder.() -> Unit
+    builder: ButtonBuilder.InteractionButtonBuilder.() -> (Unit)
 ){
     contract {
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
@@ -94,12 +82,7 @@ public fun ActionRowBuilder.interactionButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
-    }
+    interactionButton(style, "${executor.id}:$data", builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -116,19 +99,13 @@ public fun ActionRowBuilder.interactionButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        "${executor.id}:$data"
-    ) {
-        this.label = label
-        builder.invoke(this)
-    }
+    interactionButton(style, "${executor.id}:$data", builder)
 }
 
 @Deprecated(
     "Renamed to interationButton",
     ReplaceWith("interactionButton(style, label, executor) { builder() }"),
-    DeprecationLevel.WARNING
+    DeprecationLevel.ERROR
 )
 @OptIn(ExperimentalContracts::class)
 public fun ActionRowBuilder.interactiveButton(
@@ -143,19 +120,13 @@ public fun ActionRowBuilder.interactiveButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        executor.id
-    ) {
-        this.label = label
-        builder.invoke(this)
-    }
+    interactionButton(style, executor.id, builder)
 }
 
 @Deprecated(
     "Renamed to interationButton",
     ReplaceWith("interactionButton(style, executor, data) { builder() }"),
-    DeprecationLevel.WARNING
+    DeprecationLevel.ERROR
 )
 @OptIn(ExperimentalContracts::class)
 public fun ActionRowBuilder.interactiveButton(
@@ -170,18 +141,13 @@ public fun ActionRowBuilder.interactiveButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
-    }
+    interactionButton(style, "${executor.id}:$data", builder)
 }
 
 @Deprecated(
     "Renamed to interationButton",
     ReplaceWith("interactionButton(style, label, executor, data) { builder() }"),
-    DeprecationLevel.WARNING
+    DeprecationLevel.ERROR
 )
 @OptIn(ExperimentalContracts::class)
 public fun ActionRowBuilder.interactiveButton(
@@ -197,13 +163,7 @@ public fun ActionRowBuilder.interactiveButton(
 
     require(style != ButtonStyle.Link) { "You cannot use a ButtonStyle.Link style in a interactive button! Please use \"linkButton(...)\" if you want to create a button with a link" }
 
-    interactionButton(
-        style,
-        "${executor.id}:$data"
-    ) {
-        this.label = label
-        builder.invoke(this)
-    }
+    interactionButton(style, "${executor.id}:$data", builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -215,11 +175,7 @@ public fun ActionRowBuilder.mentionableSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    mentionableSelect(
-        executor.id
-    ) {
-        builder.invoke(this)
-    }
+    mentionableSelect(executor.id, builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -232,11 +188,7 @@ public fun ActionRowBuilder.mentionableSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    mentionableSelect(
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
-    }
+    mentionableSelect("${executor.id}:$data", builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -248,11 +200,7 @@ public fun ActionRowBuilder.roleSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    roleSelect(
-        executor.id
-    ) {
-        builder.invoke(this)
-    }
+    roleSelect(executor.id, builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -265,11 +213,7 @@ public fun ActionRowBuilder.roleSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    roleSelect(
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
-    }
+    roleSelect("${executor.id}:$data", builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -281,11 +225,7 @@ public fun ActionRowBuilder.stringSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    stringSelect(
-        executor.id
-    ) {
-        builder.invoke(this)
-    }
+    stringSelect(executor.id, builder)
 }
 
 @OptIn(ExperimentalContracts::class)
@@ -299,9 +239,30 @@ public fun ActionRowBuilder.stringSelect(
         callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
 
-    stringSelect(
-        "${executor.id}:$data"
-    ) {
-        builder.invoke(this)
+    stringSelect("${executor.id}:$data", builder)
+}
+
+@OptIn(ExperimentalContracts::class)
+public fun ActionRowBuilder.userSelect(
+    executor: SelectMenuExecutorDeclaration,
+    data: String,
+    builder: UserSelectBuilder.() -> (Unit) = {}
+) {
+    contract {
+        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
     }
+
+    userSelect("${executor.id}:$data", builder)
+}
+
+@OptIn(ExperimentalContracts::class)
+public fun ActionRowBuilder.userSelect(
+    executor: SelectMenuExecutorDeclaration,
+    builder: UserSelectBuilder.() -> (Unit) = {}
+) {
+    contract {
+        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+    }
+
+    userSelect(executor, builder)
 }

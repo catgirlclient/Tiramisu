@@ -112,7 +112,6 @@ public open class BarebonesInteractionContext(
         title: String,
         builder: ModalBuilder.() -> (Unit)
     ): Unit = bridge.manager.sendModal(title, idWithData, builder)
-
 }
 
 /**

@@ -1,4 +1,4 @@
-package live.shuuyu.discordinteraktions.common.commands
+ package live.shuuyu.discordinteraktions.common.commands
 
 public interface ApplicationCommandDeclarationWrapper
 

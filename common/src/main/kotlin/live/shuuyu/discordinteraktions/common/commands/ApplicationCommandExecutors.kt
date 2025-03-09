@@ -43,8 +43,9 @@ public abstract class UserCommandExecutor : ApplicationCommandExecutor() {
 }
 
 /**
- * This is the class that should be inherited if you
- * want to create an Message Command.
+ * Creates the executor for a [messageCommand]. To declare it, you'll want to use [MessageCommandExecutor].
+ *
+ * @see MessageCommandExecutor
  */
 public abstract class MessageCommandExecutor : ApplicationCommandExecutor() {
     public abstract suspend fun execute(context: ApplicationCommandContext, targetMessage: Message)
