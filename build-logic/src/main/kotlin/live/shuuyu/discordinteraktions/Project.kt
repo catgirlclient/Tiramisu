@@ -5,5 +5,5 @@ object Project {
     const val Description = "Kotlin Library for Receiving and Handling Discord Interactions via Web Servers/Gateway with Kord or JDA"
     const val Group = "live.shuuyu.discordinteraktions"
     const val Version = "1.0.0"
-    const val Github_Repo = "https://github.com/catgirlclient/DiscordInteraKTions"
+    const val Url = "https://github.com/catgirlclient/DiscordInteraKTions"
 }

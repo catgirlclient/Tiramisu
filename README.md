@@ -13,9 +13,12 @@ Some things to note:
 
 **🚧 Experiemental Project 🚧** / **Not finished yet so you shouldn't use it!!**
 
-Discord InteraKTions allows you to create, receive and process [Discord's Application Commands](https://discord.com/developers/docs/interactions/application-commands) and [Message Components](https://discord.com/developers/docs/interactions/message-components) via a HTTP Web Server or via the Gateway. Built on top of [Kord](https://github.com/kordlib/kord), using interactions is easy and fun!
+Discord InteraKTions allows you to create, receive and process [Discord's Application Commands](https://discord.com/developers/docs/interactions/application-commands) and [Message Components](https://discord.com/developers/docs/interactions/message-components) 
+via a HTTP Web Server or via the Gateway. Built on top of [Kord](https://github.com/kordlib/kord), using interactions is easy and fun!
 
-Discord InteraKTions is as barebones as it gets compared to other libs like [Kord Extensions](https://github.com/Kord-Extensions/kord-extensions), and this is intentional! While Discord InteraKTions does provide an easy way to create slash command declarations and slash command executors, the rest (dependency injection, paginator, translations, etc) is up to you to do it your own way!
+Discord InteraKTions is as barebones as it gets compared to other libs like [Kord Extensions](https://github.com/Kord-Extensions/kord-extensions), and this is intentional! 
+While Discord InteraKTions does provide an easy way to create slash command declarations and slash command executors, the rest 
+(dependency injection, paginator, translations, etc) is up to you to do it your own way!
 
 ## 📝 Status of Discord InteraKTions
 

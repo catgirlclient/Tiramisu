@@ -9,8 +9,9 @@ repositories {
 }
 
 dependencies {
-    api(project(":core"))
+    api(project(":common"))
     implementation(libs.jda)
     implementation(libs.coroutines.core)
     implementation(libs.serialization.json)
+    implementation(libs.datetime)
 }

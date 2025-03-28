@@ -1,4 +1,4 @@
-package live.shuuyu.discordinteraktions.platform.jda.utils
+package live.shuuyu.discordinteraktions.platforms.jda.utils
 
 import kotlinx.coroutines.future.await
 import net.dv8tion.jda.api.requests.RestAction

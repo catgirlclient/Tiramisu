@@ -84,7 +84,7 @@ public class StringCommandOptionBuilder(
     override val required: Boolean = true
 }
 
-public class NullableStringCommandOptionBuilder(
+public class  NullableStringCommandOptionBuilder(
     override val name: String,
     override val description: String
 ) : StringCommandOptionBuilderBase<String?>() {
