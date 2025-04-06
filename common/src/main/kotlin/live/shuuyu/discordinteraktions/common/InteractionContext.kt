@@ -16,4 +16,4 @@ public open class InteractionContext(
      * The interaction data object from Discord, useful if you need to use data that is not exposed directly via Discord InteraKTions
      */
     public val discordInteraction: DiscordInteraction
-) : live.shuuyu.discordinteraktions.common.BarebonesInteractionContext(bridge)
+): BarebonesInteractionContext(bridge)

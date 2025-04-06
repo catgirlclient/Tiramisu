@@ -1,22 +1,45 @@
 package live.shuuyu.discordinteraktions.platforms.jda.commands
 
+import live.shuuyu.discordinteraktions.common.commands.options.SlashCommandArguments
+import live.shuuyu.discordinteraktions.platforms.jda.commands.options.ApplicationCommandOptions
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 
-public sealed class ApplicationCommandExecutors {
+public sealed class ApplicationCommandExecutor {
     public open fun signature(): Any = this::class
 }
 
 /**
  * Creates a slash command, allowing for users to execute commands via the chat with a ``/`` as its prefix.
  *
+ * ```kotlin
+ * class MySlashCommand: SlashCommandExecutor(), SlashCommandDeclarationWrapper {
+ *     // Declares your command. Make sure that you properly upsert the command in the command manager!
+ *     override fun declaration() = slashCommand("myuser", this)
+ *
+ *     // If you want options in your commands, this would be the best time to declare them!
+ *     inner class Options: ApplicationCommandOptions() {
+ *          val user = user("user", "The user you want to target")
+ *     }
+ *
+ *     override val options = Options()
+ *
+ *     // Anything inside of this block will execute when a user sends a request to your bot.
+ *     override suspend fun execute(context: ApplicationCommandContext, args: SlashCommandArguments) {
+ *          context.sendMessage(content = args[option.user].name) // Sends the target user's name
+ *     }
+ * }
+ * ```
+ *
  * @see SlashCommandDeclarationBuilder
  *
  * @since 1.0.0
  */
-public abstract class SlashCommandExecutor {
-    public abstract suspend fun execute(context: ApplicationCommandContext)
+public abstract class SlashCommandExecutor: ApplicationCommandExecutor() {
+    public open val options: ApplicationCommandOptions = ApplicationCommandOptions.NO_OPTIONS
+
+    public abstract suspend fun execute(context: ApplicationCommandContext, options: SlashCommandArguments)
 }
 
 /**
@@ -42,7 +65,7 @@ public abstract class SlashCommandExecutor {
  *
  * @since 1.0.0
  */
-public abstract class UserCommandExecutor {
+public abstract class UserCommandExecutor: ApplicationCommandExecutor() {
     public abstract suspend fun execute(context: ApplicationCommandContext, targetUser: User, targetMember: Member?)
 }
 
@@ -62,6 +85,6 @@ public abstract class UserCommandExecutor {
  *
  * @since 1.0.0
  */
-public abstract class MessageCommandExecutor {
+public abstract class MessageCommandExecutor: ApplicationCommandExecutor() {
     public abstract suspend fun execute(context: ApplicationCommandContext, targetMessage: Message)
 }

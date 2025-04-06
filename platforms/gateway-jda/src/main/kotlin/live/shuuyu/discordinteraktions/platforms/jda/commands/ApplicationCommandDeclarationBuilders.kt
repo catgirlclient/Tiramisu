@@ -5,6 +5,16 @@ import net.dv8tion.jda.api.interactions.DiscordLocale
 import net.dv8tion.jda.api.interactions.InteractionContextType
 import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 
+/**
+ * Creates a slash command.
+ *
+ * @param name The name of the slash command.
+ * @param description The description of the slash command.
+ * @param executor Executes the sequestered code when the command is executed.
+ *
+ * @see SlashCommandExecutor
+ * @since 1.0.0
+ */
 public fun slashCommand(
     name: String,
     description: String,
@@ -38,8 +48,22 @@ public class SlashCommandDeclarationBuilder(
     public fun subcommandGroup(name: String, description: String, block: SlashCommandGroupDeclarationBuilder.() -> (Unit)) {
         subcommandGroups += SlashCommandGroupDeclarationBuilder(name, description).apply(block)
     }
+
+    public fun build(): SlashCommandDeclaration = InteraKTionsSlashCommandDeclaration(
+        name,
+        nameLocalization,
+        description,
+        descriptionLocalization,
+        executor,
+        defaultMemberPermissions,
+        contexts,
+        subcommands.map { it.build() },
+        subcommandGroups.map { it.build() },
+        nsfw
+    )
 }
 
+@InteraKTionsDsl
 public class SlashCommandGroupDeclarationBuilder(
     public val name: String,
     public val description: String
@@ -53,14 +77,68 @@ public class SlashCommandGroupDeclarationBuilder(
         name: String,
         description: String,
         executor: SlashCommandExecutor,
-        builder: SlashCommandDeclarationBuilder.() -> (Unit)) {
+        builder: SlashCommandDeclarationBuilder.() -> (Unit)
+    ) {
         subcommands += SlashCommandDeclarationBuilder(name, description, executor).apply(builder)
     }
+
+    public fun build(): SlashCommandGroupDeclaration = InteraKTionsSlashCommandGroupDeclaration (
+        name,
+        nameLocalization,
+        description,
+        descriptionLocalization,
+        subcommands.map { it.build()},
+        nsfw
+    )
 }
+
+public fun userCommand(
+    name: String,
+    executor: UserCommandExecutor,
+    builder: UserCommandDeclarationBuilder.() -> (Unit) = {}
+): UserCommandDeclarationBuilder = UserCommandDeclarationBuilder(name, executor).apply(builder)
 
 public class UserCommandDeclarationBuilder(
     public val name: String,
     public val executor: UserCommandExecutor
 ) {
+    public var nameLocalizations: Map<DiscordLocale, String>? = null
+    public var defaultMemberPermissions: DefaultMemberPermissions? = null
+    public var contexts: List<InteractionContextType>? = mutableListOf()
+    public var nsfw: Boolean? = null
 
+    public fun build(): UserCommandDeclaration = InteraKTionsUserCommandDeclaration(
+        name,
+        nameLocalizations,
+        executor,
+        defaultMemberPermissions,
+        contexts,
+        nsfw
+    )
+}
+
+public fun messageCommand(
+    name: String,
+    executor: MessageCommandExecutor,
+    builder: MessageCommandDeclarationBuilder.() -> (Unit) = {}
+): MessageCommandDeclarationBuilder = MessageCommandDeclarationBuilder(name, executor).apply(builder)
+
+
+public class MessageCommandDeclarationBuilder(
+    public val name: String,
+    public val executor: MessageCommandExecutor
+) {
+    public var nameLocalizations: Map<DiscordLocale, String>? = null
+    public var defaultMemberPermissions: DefaultMemberPermissions? = null
+    public var contexts: List<InteractionContextType>? = mutableListOf()
+    public var nsfw: Boolean? = null
+
+    public fun build(): MessageCommandDeclaration = InteraKTionsMessageCommandDeclaration(
+        name,
+        nameLocalizations,
+        executor,
+        defaultMemberPermissions,
+        contexts,
+        nsfw
+    )
 }

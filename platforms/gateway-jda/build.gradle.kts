@@ -1,5 +1,6 @@
 plugins {
-    live.shuuyu.scripts.`interaktions-module`
+    id("live.shuuyu.discordinteraktions.convention")
+    id("live.shuuyu.discordinteraktions.publishing")
 }
 
 group = "net.perfectdreams.discordinteraktions"

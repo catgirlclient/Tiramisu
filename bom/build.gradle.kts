@@ -1,5 +1,3 @@
-import live.shuuyu.scripts.utils.Project
-
 plugins {
     `java-platform`
     `maven-publish`
@@ -16,6 +14,6 @@ dependencies {
     }
 }
 
-publishing.publications.register<MavenPublication>(Project.NAME) {
+publishing.publications.register<MavenPublication>("DiscordInteraKTions") {
     from(components["javaPlatform"])
 }

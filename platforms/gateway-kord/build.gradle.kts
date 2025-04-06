@@ -1,6 +1,6 @@
 plugins {
-    live.shuuyu.scripts.`interaktions-module`
-    live.shuuyu.scripts.`interaktions-publishing`
+    id("live.shuuyu.discordinteraktions.convention")
+    id("live.shuuyu.discordinteraktions.publishing")
 }
 
 dependencies {
