@@ -8,7 +8,7 @@ import live.shuuyu.discordinteraktions.common.commands.options.DiscordCommandOpt
 import live.shuuyu.discordinteraktions.common.commands.options.OptionReference
 import live.shuuyu.discordinteraktions.common.interactions.InteractionData
 
-// This doesn't inherit from InteractionContext because we can't send messages on a autocomplete request
+// This doesn't inherit from InteractionContext because we can't send messages on an autocomplete request
 public open class AutocompleteContext(
     public val sender: User,
     public val channelId: Snowflake,

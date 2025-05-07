@@ -35,7 +35,7 @@ public open class BarebonesInteractionContext(
     }
 
     /**
-     * Defers the application command request message with a ephemeral message
+     * Defers the application command request message with an ephemeral message.
      */
     public suspend fun deferChannelMessageEphemerally() {
         if (isDeferred)
@@ -65,13 +65,16 @@ public open class BarebonesInteractionContext(
 
         if (message.files?.isNotEmpty() == true && !isDeferred) {
             // If the message has files and our current bridge state is "NOT_REPLIED_YET", then it means that we need to defer before sending the file!
-            // (Because currently you can only send files by editing the original interaction message or with a follow up message
+            // (Because currently you can only send files by editing the original interaction message or with a follow-up message
             deferChannelMessage()
         }
 
         return bridge.manager.sendPublicMessage(message)
     }
 
+    /**
+     * Sends an ephemeral/private message which only the executor will be able to see.
+     */
     public suspend fun sendEphemeralMessage(message: InteractionOrFollowupMessageCreateBuilder): EditableMessage {
         // Check if state matches what we expect
         if (bridge.state.value == InteractionRequestState.DEFERRED_CHANNEL_MESSAGE)
@@ -80,7 +83,7 @@ public open class BarebonesInteractionContext(
 
         if (message.files?.isNotEmpty() == true && !isDeferred) {
             // If the message has files and our current bridge state is "NOT_REPLIED_YET", then it means that we need to defer before sending the file!
-            // (Because currently you can only send files by editing the original interaction message or with a follow up message
+            // (Because currently you can only send files by editing the original interaction message or with a follow-up message
             deferChannelMessage()
         }
 

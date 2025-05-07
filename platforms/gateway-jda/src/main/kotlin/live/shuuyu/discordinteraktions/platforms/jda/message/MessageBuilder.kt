@@ -19,7 +19,7 @@ public interface MessageBuilder {
      *
      * @since 1.0.0
      */
-    public var embeds: MutableList<EmbedBuilder>?
+    public var embeds: MutableList<net.dv8tion.jda.api.EmbedBuilder>?
 
     /**
      * The attached files correlating to the message itself.

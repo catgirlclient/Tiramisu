@@ -1,11 +1,11 @@
 package live.shuuyu.discordinteraktions.platforms.jda.message
 
 import kotlinx.datetime.Instant
-import kotlinx.datetime.toJavaInstant
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.entities.MessageEmbed
 import java.awt.Color
 
-public class EmbedBuilder {
+public class EmbedBuilder: EmbedBuilder() {
     /**
      * The title of your embed. Limited to the length of [Limits.title].
      *
@@ -59,7 +59,7 @@ public class EmbedBuilder {
 
     public var thumbnail: Thumbnail? = null
 
-    public var fields: MutableList<Field> = mutableListOf()
+    // public var fields: MutableList<Field> = mutableListOf()
 
     public inline fun footer(builder: Footer.() -> (Unit)) {
         footer = (footer ?: Footer()).apply(builder)
@@ -69,6 +69,7 @@ public class EmbedBuilder {
         thumbnail = (thumbnail ?: Thumbnail()).apply(builder)
     }
 
+    /*
     public inline fun field(builder: Field.() -> (Unit)) {
         fields.add(Field().apply(builder))
     }
@@ -82,19 +83,18 @@ public class EmbedBuilder {
         fields.add(field)
     }
 
-    /**
-     * Converts Discord InteraKTions embeds to JDA embeds, which guarantees compatibility.
      */
-    public fun toJDAEmbedBuilder(): EmbedBuilder {
-        return EmbedBuilder().apply {
-            setTitle(title)
-            setDescription(description)
-            setUrl(url)
-            setColor(color)
-            setTimestamp(timestamp?.toJavaInstant())
-            setThumbnail(thumbnail?.url)
-            setFooter(footer?.text, footer?.icon)
-        }
+
+    /*
+    override fun setFooter(text: String?): EmbedBuilder {
+        return footer.let { super.setFooter(it.text, it.icon ) }
+    }
+     */
+
+    override fun build(): MessageEmbed {
+
+
+        return super.build()
     }
 
     public class Field {

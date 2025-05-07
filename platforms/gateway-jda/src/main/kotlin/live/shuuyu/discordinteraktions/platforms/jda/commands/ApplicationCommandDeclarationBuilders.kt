@@ -1,4 +1,4 @@
-package live.shuuyu.discordinteraktions.platforms.jda.commands
+    package live.shuuyu.discordinteraktions.platforms.jda.commands
 
 import live.shuuyu.discordinteraktions.common.annotations.InteraKTionsDsl
 import net.dv8tion.jda.api.interactions.DiscordLocale

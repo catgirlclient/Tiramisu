@@ -1140,6 +1140,8 @@ public final class live/shuuyu/discordinteraktions/common/components/ComponentEx
 public final class live/shuuyu/discordinteraktions/common/components/ComponentHelpersKt {
 	public static final fun channelSelect (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static final fun channelSelect (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun channelSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun channelSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static final fun interactionButton (Ldev/kord/rest/builder/component/ActionRowBuilder;Ldev/kord/common/entity/ButtonStyle;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/components/ButtonExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static final fun interactionButton (Ldev/kord/rest/builder/component/ActionRowBuilder;Ldev/kord/common/entity/ButtonStyle;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/components/ButtonExecutorDeclaration;Lkotlin/jvm/functions/Function1;)V
 	public static final fun interactionButton (Ldev/kord/rest/builder/component/ActionRowBuilder;Ldev/kord/common/entity/ButtonStyle;Llive/shuuyu/discordinteraktions/common/components/ButtonExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
@@ -1163,6 +1165,10 @@ public final class live/shuuyu/discordinteraktions/common/components/ComponentHe
 	public static final fun stringSelect (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;)V
 	public static synthetic fun stringSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 	public static synthetic fun stringSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static final fun userSelect (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun userSelect (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun userSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+	public static synthetic fun userSelect$default (Ldev/kord/rest/builder/component/ActionRowBuilder;Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
 public class live/shuuyu/discordinteraktions/common/components/GuildComponentContext : live/shuuyu/discordinteraktions/common/components/ComponentContext {

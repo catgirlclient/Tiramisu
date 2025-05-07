@@ -19,7 +19,7 @@ public open class GuildApplicationCommandContext(
     public val member: Member
 ) : ApplicationCommandContext(bridge, sender, channelId, data, discordInteractionData, applicationCommandDeclaration) {
     /**
-     * Returns the [Permissions] of the application.
+     * Returns the [Permissions] of the application in the requested server.
      */
     public val appPermissions: Permissions = discordInteractionData.appPermissions.value ?: error("App Permissions field is null on a Guild Interaction! Bug?")
 }

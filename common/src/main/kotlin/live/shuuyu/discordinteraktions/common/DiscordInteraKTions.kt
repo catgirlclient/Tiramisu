@@ -1,5 +1,6 @@
 package live.shuuyu.discordinteraktions.common
 
+import dev.kord.common.annotation.KordExperimental
 import dev.kord.common.entity.DiscordApplicationCommand
 import dev.kord.common.entity.Snowflake
 import dev.kord.core.Kord
@@ -37,7 +38,7 @@ public class DiscordInteraKTions(
     )
 
     /**
-     * Upserts all global commands
+     * Upserts all global commands, allowing for global usage.
      */
     public suspend fun updateAllGlobalCommands(): List<DiscordApplicationCommand> =
         rest.interaction.createGlobalApplicationCommands(applicationId, createGlobalApplicationCommandCreateRequests())
@@ -46,7 +47,7 @@ public class DiscordInteraKTions(
      * Creates a list of guild [ApplicationCommandCreateRequest], which can be used with Kord to register the command on Discord.
      *
      * Because [ApplicationCommandCreateRequest] is [Serializable], you can create a hash of the requests and track if your bot needs to send an upsert request do Discord or not,
-     * which can be useful to avoid ratelimits.
+     * which can be useful to avoid rate limits.
      */
     public fun createGuildApplicationCommandCreateRequests(): List<ApplicationCommandCreateRequest> =
         GuildMultiApplicationCommandBuilder().apply {
@@ -59,7 +60,7 @@ public class DiscordInteraKTions(
      * Creates a list of global [ApplicationCommandCreateRequest], which can be used with Kord to register the command on Discord.
      *
      * Because [ApplicationCommandCreateRequest] is [Serializable], you can create a hash of the requests and track if your bot needs to send an upsert request do Discord or not,
-     * which can be useful to avoid ratelimits.
+     * which can be useful to avoid rate limits.
      */
     public fun createGlobalApplicationCommandCreateRequests(): List<ApplicationCommandCreateRequest> =
         GlobalMultiApplicationCommandBuilder().apply {
@@ -172,6 +173,10 @@ public class DiscordInteraKTions(
     }
 }
 
+/**
+ * The entrypoint for [DiscordInteraKTions].
+ */
+@OptIn(KordExperimental::class)
 public fun DiscordInteraKTions(token: String, applicationId: Snowflake): DiscordInteraKTions = DiscordInteraKTions(
     Kord.restOnly(token),
     applicationId
