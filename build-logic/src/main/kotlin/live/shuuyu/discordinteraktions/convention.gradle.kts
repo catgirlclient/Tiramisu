@@ -41,8 +41,8 @@ tasks {
         jvmToolchain(17) // latest supported LTS version
 
         compilerOptions {
-            apiVersion.set(KotlinVersion.KOTLIN_2_2)
-            languageVersion.set(KotlinVersion.KOTLIN_2_2)
+            apiVersion.set(KotlinVersion.KOTLIN_2_0)
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
             progressiveMode = true
             freeCompilerArgs.add("-Xdont-warn-on-error-suppression")
         }
