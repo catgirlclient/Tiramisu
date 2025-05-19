@@ -12,8 +12,7 @@ import dev.kord.rest.builder.interaction.IntegerOptionBuilder
 import dev.kord.rest.builder.interaction.NumberOptionBuilder
 import dev.kord.rest.builder.interaction.StringChoiceBuilder
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import live.shuuyu.discordinteraktions.common.autocomplete.AutocompleteContext
 import live.shuuyu.discordinteraktions.common.autocomplete.FocusedCommandOption
 import live.shuuyu.discordinteraktions.common.autocomplete.GuildAutocompleteContext
@@ -26,13 +25,16 @@ import live.shuuyu.discordinteraktions.common.commands.options.StringCommandOpti
 import live.shuuyu.discordinteraktions.common.interactions.InteractionData
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
 import live.shuuyu.discordinteraktions.common.utils.commands.CommandDeclarationUtils
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Checks, matches and executes commands, this is a class because we share code between the `gateway-kord` and `webserver-ktor-kord` modules
  */
-public class KordAutocompleteChecker(public val kord: Kord, public val interactionsManager: InteractionsManager) {
-    public companion object {
+public class KordAutocompleteChecker(public val kord: Kord, private val interactionsManager: InteractionsManager) {
+    public companion object: CoroutineScope {
         private val logger = KotlinLogging.logger {}
+        override val coroutineContext: CoroutineContext = Dispatchers.IO + SupervisorJob() + CoroutineName(this::class.java.simpleName)
+        private val scope: CoroutineScope = CoroutineScope(coroutineContext)
     }
 
     public fun checkAndExecute(request: DiscordInteraction, requestManager: RequestManager) {
@@ -96,7 +98,7 @@ public class KordAutocompleteChecker(public val kord: Kord, public val interacti
 
         require(option is ChoiceableCommandOption<*>) { "Command option is not choiceable, so it can't be autocompleted! Bug?" }
 
-        GlobalScope.launch {
+        scope.launch {
             val focusedCommandOption = FocusedCommandOption(
                 focusedDiscordOption.name,
                 focusedDiscordOption.value

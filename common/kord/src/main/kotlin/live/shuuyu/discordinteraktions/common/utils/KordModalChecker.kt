@@ -9,21 +9,23 @@ import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Member
 import dev.kord.core.entity.User
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import live.shuuyu.discordinteraktions.common.commands.InteractionsManager
 import live.shuuyu.discordinteraktions.common.interactions.InteractionData
 import live.shuuyu.discordinteraktions.common.modals.GuildModalContext
 import live.shuuyu.discordinteraktions.common.modals.ModalContext
 import live.shuuyu.discordinteraktions.common.modals.components.ModalArguments
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Checks, matches and executes commands, this is a class because we share code between the `gateway-kord` and `webserver-ktor-kord` modules
  */
-public class KordModalChecker(public val kord: Kord, public val interactionsManager: InteractionsManager) {
-    public companion object {
+public class KordModalChecker(public val kord: Kord, private val interactionsManager: InteractionsManager) {
+    public companion object: CoroutineScope {
         private val logger = KotlinLogging.logger {}
+        override val coroutineContext: CoroutineContext = Dispatchers.IO + SupervisorJob() + CoroutineName(this::class.java.simpleName)
+        private val scope: CoroutineScope = CoroutineScope(coroutineContext)
     }
 
     public fun checkAndExecute(request: DiscordInteraction, requestManager: RequestManager) {
@@ -95,7 +97,7 @@ public class KordModalChecker(public val kord: Kord, public val interactionsMana
             } ?: error("I couldn't find a matching ModalComponent named ${it.customId.value} in the modal executor declaration!")) to it.value.value
         }
 
-        GlobalScope.launch {
+        scope.launch {
             modalExecutor.onSubmit(
                 modalContext,
                 ModalArguments(map)

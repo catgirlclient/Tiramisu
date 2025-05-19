@@ -9,21 +9,23 @@ import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Member
 import dev.kord.core.entity.User
 import io.github.oshai.kotlinlogging.KotlinLogging
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import live.shuuyu.discordinteraktions.common.commands.*
 import live.shuuyu.discordinteraktions.common.interactions.InteractionData
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
 import live.shuuyu.discordinteraktions.common.shared.commands.options.SlashCommandArguments
 import live.shuuyu.discordinteraktions.common.utils.commands.CommandDeclarationUtils
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Checks, matches and executes commands, this is a class because we share code between the `gateway-kord` and `webserver-ktor-kord` modules
  */
-public class KordCommandChecker(public val kord: Kord, public val interactionsManager: InteractionsManager) {
-    public companion object {
+public class KordCommandChecker(public val kord: Kord, private val interactionsManager: InteractionsManager) {
+    public companion object: CoroutineScope {
         private val logger = KotlinLogging.logger {}
+        override val coroutineContext: CoroutineContext = Dispatchers.Default + SupervisorJob() + CoroutineName(this::class.java.simpleName)
+        private val scope: CoroutineScope = CoroutineScope(coroutineContext)
     }
 
     public fun checkAndExecute(request: DiscordInteraction, requestManager: RequestManager) {
@@ -66,7 +68,7 @@ public class KordCommandChecker(public val kord: Kord, public val interactionsMa
                     relativeOptions ?: listOf()
                 )
 
-                GlobalScope.launch {
+                scope.launch {
                     executor.execute(
                         createContext(
                             command,
@@ -92,7 +94,7 @@ public class KordCommandChecker(public val kord: Kord, public val interactionsMa
                 val targetUser = interactionData.resolved?.users?.get(targetUserId) ?: error("Target User is null in a User Command! Bug?")
                 val targetMember = interactionData.resolved.members?.get(targetUserId)
 
-                GlobalScope.launch {
+                scope.launch {
                     executor.execute(
                         createContext(
                             command,
@@ -118,7 +120,7 @@ public class KordCommandChecker(public val kord: Kord, public val interactionsMa
                 val targetMessageId = request.data.targetId.value
                 val targetMessage = interactionData.resolved?.messages?.get(targetMessageId) ?: error("Target Message is null in a Message Command! Bug?")
 
-                GlobalScope.launch {
+                scope.launch {
                     executor.execute(
                         createContext(
                             command,

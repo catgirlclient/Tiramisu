@@ -8,7 +8,8 @@ import dev.kord.core.cache.data.MemberData
 import dev.kord.core.cache.data.UserData
 import dev.kord.core.entity.Member
 import dev.kord.core.entity.User
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import live.shuuyu.discordinteraktions.common.commands.InteractionsManager
 import live.shuuyu.discordinteraktions.common.components.ComponentContext
@@ -19,11 +20,17 @@ import live.shuuyu.discordinteraktions.common.interactions.InteractionData
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
 import live.shuuyu.discordinteraktions.common.utils.entities.messages.KordPublicMessage
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Checks, matches and executes commands, this is a class because we share code between the `gateway-kord` and `webserver-ktor-kord` modules
  */
-public class KordComponentChecker(public val kord: Kord, public val interactionsManager: InteractionsManager) {
+public class KordComponentChecker(public val kord: Kord, private val interactionsManager: InteractionsManager) {
+    public companion object: CoroutineScope {
+        override val coroutineContext: CoroutineContext = Dispatchers.Default
+        private val scope: CoroutineScope = CoroutineScope(coroutineContext)
+    }
+
     public fun checkAndExecute(request: DiscordInteraction, requestManager: RequestManager) {
         val bridge = requestManager.bridge
 
@@ -63,7 +70,7 @@ public class KordComponentChecker(public val kord: Kord, public val interactions
                     it.signature() == executorDeclaration.parent
                 } ?: InteraKTionsExceptions.missingExecutor("button")
 
-                GlobalScope.launch {
+                scope.launch {
                     executor.onClick(
                         kordUser,
                         createContext(
@@ -93,7 +100,7 @@ public class KordComponentChecker(public val kord: Kord, public val interactions
                     it.signature() == executorDeclaration.parent
                 } ?: InteraKTionsExceptions.missingExecutor("select menu")
 
-                GlobalScope.launch {
+                scope.launch {
                     executor.onSelect(
                         kordUser,
                         createContext(
