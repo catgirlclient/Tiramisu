@@ -12,7 +12,6 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
@@ -24,8 +23,8 @@ import live.shuuyu.discordinteraktions.common.requests.InteractionRequestState
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
 import live.shuuyu.discordinteraktions.common.requests.managers.HttpRequestManager
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
-import live.shuuyu.discordinteraktions.platforms.kord.entities.messages.KordOriginalInteractionEphemeralMessage
-import live.shuuyu.discordinteraktions.platforms.kord.entities.messages.KordOriginalInteractionPublicMessage
+import live.shuuyu.discordinteraktions.common.utils.entities.messages.KordOriginalInteractionEphemeralMessage
+import live.shuuyu.discordinteraktions.common.utils.entities.messages.KordOriginalInteractionPublicMessage
 
 /**
  * On this request manager we'll handle the requests

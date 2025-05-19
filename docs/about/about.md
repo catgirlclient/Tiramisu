@@ -10,6 +10,10 @@ two libraries.
 
 Now, Discord InteraKTions is maintained under our organization, as we try to improve the usability of its codebase!
 
+Discord InteraKTions is very barebones in comparison to other Kord/JDA libraries like [Kord Extensions](https://github.com/Kord-Extensions/kord-extensions).
+We don't include any extra features that you don't need, as it's up to you to make it! It gives the developer more control
+over their code, and how they want the feature to be developed.
+
 ## Supported Libraries
 Any libraries not mentioned are explicitly not supported, and we have no interest in providing support for such libraries.
 

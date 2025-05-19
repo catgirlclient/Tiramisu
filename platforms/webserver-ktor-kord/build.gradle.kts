@@ -6,7 +6,7 @@ plugins {
 dependencies {
     implementation(kotlin("reflect"))
     api(project(":requests-verifier"))
-    api(project(":common"))
+    api(project(":common:kord"))
     implementation(libs.kord.rest)
     implementation(libs.ktor.server.netty)
 }

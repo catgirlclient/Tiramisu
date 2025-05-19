@@ -1,7 +1,7 @@
 [versions]
 datetime = "0.6.2"
 jda = "5.3.0"
-kotlin = "2.1.10"
+kotlin = "2.1.21"
 kord = "0.16.0-SNAPSHOT"
 dokka = "2.0.0"
 binary-compatibility-validator = "0.17.0"

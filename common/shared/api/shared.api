@@ -1,0 +1,28 @@
+public abstract interface annotation class live/shuuyu/discordinteraktions/common/shared/annotations/InteraKTionsDsl : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class live/shuuyu/discordinteraktions/common/shared/annotations/InteraKTionsExperimental : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class live/shuuyu/discordinteraktions/common/shared/annotations/InteraKTionsInternal : java/lang/annotation/Annotation {
+}
+
+public final class live/shuuyu/discordinteraktions/common/shared/commands/options/OptionReference {
+	public fun <init> (Ljava/lang/String;Z)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun copy (Ljava/lang/String;Z)Llive/shuuyu/discordinteraktions/common/shared/commands/options/OptionReference;
+	public static synthetic fun copy$default (Llive/shuuyu/discordinteraktions/common/shared/commands/options/OptionReference;Ljava/lang/String;ZILjava/lang/Object;)Llive/shuuyu/discordinteraktions/common/shared/commands/options/OptionReference;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRequired ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class live/shuuyu/discordinteraktions/common/shared/commands/options/SlashCommandArguments {
+	public fun <init> (Ljava/util/Map;)V
+	public final fun get (Llive/shuuyu/discordinteraktions/common/shared/commands/options/OptionReference;)Ljava/lang/Object;
+	public final fun getTypes ()Ljava/util/Map;
+}
+

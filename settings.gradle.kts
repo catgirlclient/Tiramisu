@@ -25,11 +25,14 @@ rootProject.name = "DiscordInteraKTions"
 
 include(
     ":bom",
-    ":core",
-    ":sample",
-    ":common",
+    ":common:jda",
+    ":common:kord",
+    ":common:shared",
     ":requests-verifier",
     ":platforms:gateway-jda",
     ":platforms:gateway-kord",
     ":platforms:webserver-ktor-kord",
+    ":sample:gateway-jda",
+    ":sample:gateway-kord",
+    ":sample:webservers-ktor-kord"
 )
