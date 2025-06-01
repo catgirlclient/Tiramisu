@@ -1,11 +1,16 @@
 package live.shuuyu.discordinteraktions.common.message
 
+import live.shuuyu.discordinteraktions.common.shared.annotations.InteraKTionsDsl
+import net.dv8tion.jda.api.entities.Mentions
+import net.dv8tion.jda.api.entities.MessageEmbed
+import net.dv8tion.jda.api.interactions.components.LayoutComponent
 import net.dv8tion.jda.api.utils.FileUpload
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
 
 // Unfortunately for me JDA and Kord share no parts commonality, so I basically have to reimplement a separate version of this.
+@InteraKTionsDsl
 public interface MessageBuilder {
     /**
      * The content of the message being supplied, with a maximum of 200 characters.
@@ -19,7 +24,14 @@ public interface MessageBuilder {
      *
      * @since 1.0.0
      */
-    public var embeds: MutableList<net.dv8tion.jda.api.EmbedBuilder>?
+    public var embeds: MutableList<MessageEmbed>?
+
+    /**
+     * 
+     */
+    public var allowedMentions: MutableList<Mentions>?
+
+    public var components: MutableList<LayoutComponent>?
 
     /**
      * The attached files correlating to the message itself.
@@ -43,7 +55,21 @@ public interface MessageBuilder {
 
 @OptIn(ExperimentalContracts::class)
 public inline fun MessageBuilder.embed(builder: EmbedBuilder.() -> (Unit)) {
-    contract { callsInPlace(builder, InvocationKind.EXACTLY_ONCE) }
+    contract {
+        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+    }
+
     val embed = EmbedBuilder().apply(builder)
-    embeds?.add(embed) ?: run { embeds = mutableListOf(embed) }
+    embeds?.add(embed.build()) ?: run { embeds = mutableListOf(embed.build()) }
+}
+
+@OptIn(ExperimentalContracts::class)
+public inline fun MessageBuilder.actionRow(builder: ActionRowBuilder.() -> (Unit)) {
+    contract {
+        callsInPlace(builder, InvocationKind.EXACTLY_ONCE)
+    }
+
+    components = (components ?: mutableListOf()).also {
+        it.add(ActionRowBuilder().apply(builder).build())
+    }
 }

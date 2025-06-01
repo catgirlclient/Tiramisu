@@ -1,4 +1,4 @@
-package live.shuuyu.discordinteraktions.common.commands
+ package live.shuuyu.discordinteraktions.common.commands
 
 import dev.kord.common.Locale
 import dev.kord.common.entity.Permissions
