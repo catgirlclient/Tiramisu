@@ -26,3 +26,30 @@ public final class live/shuuyu/discordinteraktions/common/shared/commands/option
 	public final fun getTypes ()Ljava/util/Map;
 }
 
+public final class live/shuuyu/discordinteraktions/common/shared/utils/Color {
+	public static final field Companion Llive/shuuyu/discordinteraktions/common/shared/utils/Color$Companion;
+	public static final synthetic fun box-impl (I)Llive/shuuyu/discordinteraktions/common/shared/utils/Color;
+	public static fun constructor-impl (I)I
+	public static fun constructor-impl (III)I
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public static final fun getBlue-impl (I)I
+	public static final fun getGreen-impl (I)I
+	public static final fun getRed-impl (I)I
+	public static final fun getRgb-impl (I)I
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public static final fun toJavaColor-impl (I)Ljava/awt/Color;
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class live/shuuyu/discordinteraktions/common/shared/utils/Color$Companion {
+}
+
+public final class live/shuuyu/discordinteraktions/common/shared/utils/ColorKt {
+	public static final fun toDiscordInteraKTionsColor (Ljava/awt/Color;)I
+}
+

@@ -1414,6 +1414,10 @@ public abstract class live/shuuyu/discordinteraktions/common/requests/managers/R
 	public abstract fun updateMessage (Llive/shuuyu/discordinteraktions/common/builder/message/modify/InteractionOrFollowupMessageModifyBuilder;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class live/shuuyu/discordinteraktions/common/utils/ColorKt {
+	public static final fun toKordColor-uo4JMaQ (I)Ldev/kord/common/Color;
+}
+
 public final class live/shuuyu/discordinteraktions/common/utils/EmbedHelpersKt {
 	public static final fun author (Ldev/kord/rest/builder/message/EmbedBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun author$default (Ldev/kord/rest/builder/message/EmbedBuilder;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
@@ -1436,29 +1440,33 @@ public final class live/shuuyu/discordinteraktions/common/utils/KordAutocomplete
 	public static final field Companion Llive/shuuyu/discordinteraktions/common/utils/KordAutocompleteChecker$Companion;
 	public fun <init> (Ldev/kord/core/Kord;Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;)V
 	public final fun checkAndExecute (Ldev/kord/common/entity/DiscordInteraction;Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
-	public final fun getInteractionsManager ()Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;
 	public final fun getKord ()Ldev/kord/core/Kord;
 }
 
-public final class live/shuuyu/discordinteraktions/common/utils/KordAutocompleteChecker$Companion {
+public final class live/shuuyu/discordinteraktions/common/utils/KordAutocompleteChecker$Companion : kotlinx/coroutines/CoroutineScope {
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/KordCommandChecker {
 	public static final field Companion Llive/shuuyu/discordinteraktions/common/utils/KordCommandChecker$Companion;
 	public fun <init> (Ldev/kord/core/Kord;Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;)V
 	public final fun checkAndExecute (Ldev/kord/common/entity/DiscordInteraction;Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
-	public final fun getInteractionsManager ()Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;
 	public final fun getKord ()Ldev/kord/core/Kord;
 }
 
-public final class live/shuuyu/discordinteraktions/common/utils/KordCommandChecker$Companion {
+public final class live/shuuyu/discordinteraktions/common/utils/KordCommandChecker$Companion : kotlinx/coroutines/CoroutineScope {
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/KordComponentChecker {
+	public static final field Companion Llive/shuuyu/discordinteraktions/common/utils/KordComponentChecker$Companion;
 	public fun <init> (Ldev/kord/core/Kord;Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;)V
 	public final fun checkAndExecute (Ldev/kord/common/entity/DiscordInteraction;Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
-	public final fun getInteractionsManager ()Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;
 	public final fun getKord ()Ldev/kord/core/Kord;
+}
+
+public final class live/shuuyu/discordinteraktions/common/utils/KordComponentChecker$Companion : kotlinx/coroutines/CoroutineScope {
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/KordConversionUtilsKt {
@@ -1470,11 +1478,11 @@ public final class live/shuuyu/discordinteraktions/common/utils/KordModalChecker
 	public static final field Companion Llive/shuuyu/discordinteraktions/common/utils/KordModalChecker$Companion;
 	public fun <init> (Ldev/kord/core/Kord;Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;)V
 	public final fun checkAndExecute (Ldev/kord/common/entity/DiscordInteraction;Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
-	public final fun getInteractionsManager ()Llive/shuuyu/discordinteraktions/common/commands/InteractionsManager;
 	public final fun getKord ()Ldev/kord/core/Kord;
 }
 
-public final class live/shuuyu/discordinteraktions/common/utils/KordModalChecker$Companion {
+public final class live/shuuyu/discordinteraktions/common/utils/KordModalChecker$Companion : kotlinx/coroutines/CoroutineScope {
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/Observable {
