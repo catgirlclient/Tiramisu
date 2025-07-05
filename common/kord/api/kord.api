@@ -1348,9 +1348,9 @@ public final class live/shuuyu/discordinteraktions/common/requests/InteractionRe
 }
 
 public final class live/shuuyu/discordinteraktions/common/requests/RequestBridge {
-	public fun <init> (Llive/shuuyu/discordinteraktions/common/utils/Observable;)V
+	public fun <init> (Llive/shuuyu/discordinteraktions/common/shared/utils/Observable;)V
 	public final fun getManager ()Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;
-	public final fun getState ()Llive/shuuyu/discordinteraktions/common/utils/Observable;
+	public final fun getState ()Llive/shuuyu/discordinteraktions/common/shared/utils/Observable;
 	public final fun get_manager ()Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;
 	public final fun setManager (Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
 	public final fun set_manager (Llive/shuuyu/discordinteraktions/common/requests/managers/RequestManager;)V
@@ -1483,13 +1483,6 @@ public final class live/shuuyu/discordinteraktions/common/utils/KordModalChecker
 
 public final class live/shuuyu/discordinteraktions/common/utils/KordModalChecker$Companion : kotlinx/coroutines/CoroutineScope {
 	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
-}
-
-public final class live/shuuyu/discordinteraktions/common/utils/Observable {
-	public fun <init> (Ljava/lang/Object;)V
-	public final fun awaitChange (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun getValue ()Ljava/lang/Object;
-	public final fun setValue (Ljava/lang/Object;)V
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/commands/CommandDeclarationUtils {

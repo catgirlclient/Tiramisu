@@ -1,7 +1,6 @@
 public final class live/shuuyu/discordinteraktions/webserver/DefaultInteractionRequestHandler : live/shuuyu/discordinteraktions/webserver/InteractionRequestHandler {
 	public static final field Companion Llive/shuuyu/discordinteraktions/webserver/DefaultInteractionRequestHandler$Companion;
 	public fun <init> (Llive/shuuyu/discordinteraktions/common/DiscordInteraKTions;)V
-	public final fun getInteraKTions ()Llive/shuuyu/discordinteraktions/common/DiscordInteraKTions;
 	public fun onAutocomplete (Lio/ktor/server/application/ApplicationCall;Ldev/kord/common/entity/DiscordInteraction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun onCommand (Lio/ktor/server/application/ApplicationCall;Ldev/kord/common/entity/DiscordInteraction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun onComponent (Lio/ktor/server/application/ApplicationCall;Ldev/kord/common/entity/DiscordInteraction;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

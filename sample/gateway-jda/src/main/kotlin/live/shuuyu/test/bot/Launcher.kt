@@ -1,8 +1,8 @@
 package live.shuuyu.test.bot
 
-object Launcher {
+public object Launcher {
     @JvmStatic
-    fun main(args: Array<String>) {
+    public fun main(args: Array<String>) {
 
     }
 }

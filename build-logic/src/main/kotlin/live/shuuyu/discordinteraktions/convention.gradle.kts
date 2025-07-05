@@ -22,6 +22,7 @@ description = Project.Description
 repositories {
     mavenCentral()
     maven("https://repo.kord.dev/snapshots") // Fallback repository
+    maven("https://m2.dv8tion.net/releases") // JDA repository
     maven("https://oss.sonatype.org/content/repositories/snapshots") // Main snapshot repository
 }
 
@@ -64,6 +65,8 @@ tasks {
                 displayName.set("Discord InteraKTions")
 
                 externalDocumentationLink("https://kotlinlang.org/")
+                externalDocumentationLink("https://kord.dev/") // Kord's website
+                externalDocumentationLink("https://jda.wiki/") // JDA's website
             }
         }
     }

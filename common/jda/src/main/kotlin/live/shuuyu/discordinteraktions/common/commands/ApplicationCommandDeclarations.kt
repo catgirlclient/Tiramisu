@@ -12,7 +12,7 @@ public sealed class ApplicationCommandDeclaration {
 public abstract class SlashCommandDeclaration : ApplicationCommandDeclaration() {
     public abstract val description: String
     public abstract val descriptionLocalizations: Map<DiscordLocale, String>?
-    public abstract val executor: SlashCommandExecutor
+    public abstract val executor: SlashCommandExecutor?
     public abstract val defaultMemberPermissions: DefaultMemberPermissions?
     public abstract val subcommands: List<SlashCommandDeclaration>
     public abstract val subcommandGroups: List<SlashCommandGroupDeclaration>
@@ -47,7 +47,7 @@ public class InteraKTionsSlashCommandDeclaration(
     override val nameLocalizations: Map<DiscordLocale, String>? = null,
     override val description: String,
     override val descriptionLocalizations: Map<DiscordLocale, String>? = null,
-    override val executor: SlashCommandExecutor,
+    override val executor: SlashCommandExecutor?,
     override val defaultMemberPermissions: DefaultMemberPermissions?,
     override val contexts: List<InteractionContextType>?,
     override val subcommands: List<SlashCommandDeclaration>,

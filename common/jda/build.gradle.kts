@@ -3,10 +3,10 @@ plugins {
     id("live.shuuyu.discordinteraktions.publishing")
 }
 
+description = "Common files shared across Discord InteraKTions' JDA compatibility."
+
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation(kotlin("reflect"))
-    implementation(project(":common:shared"))
+    api(project(":common:shared"))
 
     api(libs.jda)
 

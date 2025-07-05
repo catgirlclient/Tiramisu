@@ -23,10 +23,14 @@ public class live/shuuyu/discordinteraktions/common/InteractionContext : live/sh
 
 public class live/shuuyu/discordinteraktions/common/InteractionsManager {
 	public fun <init> ()V
-	public final fun getApplicationCommandDeclarations ()Ljava/util/List;
+	public final fun getApplicationCommandsDeclarations ()Ljava/util/List;
 	public final fun getMessageCommandExecutor ()Ljava/util/List;
 	public final fun getSlashCommandExecutors ()Ljava/util/List;
 	public final fun getUserCommandExecutors ()Ljava/util/List;
+	public final fun register (Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;)V
+	public final fun register (Llive/shuuyu/discordinteraktions/common/commands/MessageCommandDeclarationWrapper;)V
+	public final fun register (Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationWrapper;)V
+	public final fun register (Llive/shuuyu/discordinteraktions/common/commands/UserCommandDeclarationWrapper;)V
 }
 
 public final class live/shuuyu/discordinteraktions/common/autocomplete/AutocompleteContext {
@@ -56,7 +60,8 @@ public final class live/shuuyu/discordinteraktions/common/autocomplete/FocusedCo
 }
 
 public class live/shuuyu/discordinteraktions/common/commands/ApplicationCommandContext : live/shuuyu/discordinteraktions/common/InteractionContext {
-	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Lnet/dv8tion/jda/api/events/interaction/GenericInteractionCreateEvent;Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;)V
+	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;Lnet/dv8tion/jda/api/events/interaction/command/GenericCommandInteractionEvent;)V
+	public final fun getApplicationCommandDeclaration ()Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;
 }
 
 public abstract class live/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration {
@@ -67,8 +72,8 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/Applicatio
 public final class live/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclarationBuildersKt {
 	public static final fun messageCommand (Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/MessageCommandExecutor;Lkotlin/jvm/functions/Function1;)Llive/shuuyu/discordinteraktions/common/commands/MessageCommandDeclarationBuilder;
 	public static synthetic fun messageCommand$default (Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/MessageCommandExecutor;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Llive/shuuyu/discordinteraktions/common/commands/MessageCommandDeclarationBuilder;
-	public static final fun slashCommand (Ljava/lang/String;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;Lkotlin/jvm/functions/Function1;)Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationBuilder;
-	public static synthetic fun slashCommand$default (Ljava/lang/String;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationBuilder;
+	public static final fun slashCommand (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationBuilder;
+	public static synthetic fun slashCommand$default (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationBuilder;
 	public static final fun userCommand (Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/UserCommandExecutor;Lkotlin/jvm/functions/Function1;)Llive/shuuyu/discordinteraktions/common/commands/UserCommandDeclarationBuilder;
 	public static synthetic fun userCommand$default (Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/UserCommandExecutor;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Llive/shuuyu/discordinteraktions/common/commands/UserCommandDeclarationBuilder;
 }
@@ -81,7 +86,7 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/Applicatio
 }
 
 public class live/shuuyu/discordinteraktions/common/commands/GuildApplicationCommandContext : live/shuuyu/discordinteraktions/common/commands/ApplicationCommandContext {
-	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Lnet/dv8tion/jda/api/interactions/Interaction;Lnet/dv8tion/jda/api/events/interaction/GenericInteractionCreateEvent;Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;Lnet/dv8tion/jda/api/entities/Guild;Lnet/dv8tion/jda/api/entities/Member;)V
+	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;Lnet/dv8tion/jda/api/entities/Guild;Lnet/dv8tion/jda/api/entities/Member;Lnet/dv8tion/jda/api/events/interaction/command/GenericCommandInteractionEvent;)V
 	public final fun getGuild ()Lnet/dv8tion/jda/api/entities/Guild;
 	public final fun getMember ()Lnet/dv8tion/jda/api/entities/Member;
 }
@@ -179,7 +184,7 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/SlashComma
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/SlashCommandDeclarationBuilder {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun build ()Llive/shuuyu/discordinteraktions/common/commands/SlashCommandDeclaration;
 	public final fun getContexts ()Ljava/util/List;
 	public final fun getDefaultMemberPermissions ()Lnet/dv8tion/jda/api/interactions/commands/DefaultMemberPermissions;
@@ -194,11 +199,12 @@ public final class live/shuuyu/discordinteraktions/common/commands/SlashCommandD
 	public final fun setContexts (Ljava/util/List;)V
 	public final fun setDefaultMemberPermissions (Lnet/dv8tion/jda/api/interactions/commands/DefaultMemberPermissions;)V
 	public final fun setDescriptionLocalization (Ljava/util/Map;)V
+	public final fun setExecutor (Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;)V
 	public final fun setNameLocalization (Ljava/util/Map;)V
 	public final fun setNsfw (Ljava/lang/Boolean;)V
 	public final fun setSubcommandGroups (Ljava/util/List;)V
 	public final fun setSubcommands (Ljava/util/List;)V
-	public final fun subcommand (Ljava/lang/String;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;Lkotlin/jvm/functions/Function1;)V
+	public final fun subcommand (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public final fun subcommandGroup (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
@@ -233,7 +239,7 @@ public final class live/shuuyu/discordinteraktions/common/commands/SlashCommandG
 	public final fun setNameLocalization (Ljava/util/Map;)V
 	public final fun setNsfw (Ljava/lang/Boolean;)V
 	public final fun setSubcommands (Ljava/util/List;)V
-	public final fun subcommand (Ljava/lang/String;Ljava/lang/String;Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;Lkotlin/jvm/functions/Function1;)V
+	public final fun subcommand (Ljava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
 public abstract class live/shuuyu/discordinteraktions/common/commands/UserCommandDeclaration : live/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration {
@@ -316,12 +322,12 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Appli
 }
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/AttachmentCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
+	public abstract fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/AttachmentCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/AttachmentCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/AttachmentCommandOption;Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/AttachmentCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -339,12 +345,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/At
 }
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/BooleanCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Boolean;
+	public abstract fun parse (Ljava/util/List;)Ljava/lang/Boolean;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/BooleanCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/BooleanCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Boolean;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/BooleanCommandOption;Ljava/util/List;)Ljava/lang/Boolean;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/BooleanCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -363,12 +369,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/Bo
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/ChannelCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
 	public abstract fun getChannelTypes ()Ljava/util/List;
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/channel/Channel;
+	public abstract fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/channel/Channel;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/ChannelCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/ChannelCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/channel/Channel;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/ChannelCommandOption;Ljava/util/List;)Lnet/dv8tion/jda/api/entities/channel/Channel;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/ChannelCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -442,8 +448,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Message$Attachment;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -464,8 +470,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Boolean;
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Ljava/lang/Boolean;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -488,8 +494,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/channel/Channel;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/channel/Channel;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -518,8 +524,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Long;
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Ljava/lang/Long;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -540,8 +546,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Mentions;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/IMentionable;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -570,8 +576,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Double;
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Ljava/lang/Double;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -592,8 +598,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Role;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Role;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -622,8 +628,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/String;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Ljava/lang/String;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -644,8 +650,8 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Defau
 	public fun getNameLocalizations ()Ljava/util/Map;
 	public fun getRequired ()Z
 	public fun hashCode ()I
-	public synthetic fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
-	public fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/User;
+	public synthetic fun parse (Ljava/util/List;)Ljava/lang/Object;
+	public fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/User;
 	public fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 	public fun toString ()Ljava/lang/String;
 }
@@ -666,12 +672,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/Di
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/IntegerCommandOption : live/shuuyu/discordinteraktions/common/commands/options/ChoiceableCommandOption, live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
 	public abstract fun getMaxValue ()Ljava/lang/Long;
 	public abstract fun getMinValue ()Ljava/lang/Long;
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Long;
+	public abstract fun parse (Ljava/util/List;)Ljava/lang/Long;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/IntegerCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/IntegerCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Long;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/IntegerCommandOption;Ljava/util/List;)Ljava/lang/Long;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/IntegerCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -696,17 +702,17 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/In
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/InteraKTionsCommandOption {
 	public abstract fun getName ()Ljava/lang/String;
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Object;
+	public abstract fun parse (Ljava/util/List;)Ljava/lang/Object;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/MentionableCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Mentions;
+	public abstract fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/IMentionable;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/MentionableCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/MentionableCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Mentions;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/MentionableCommandOption;Ljava/util/List;)Lnet/dv8tion/jda/api/entities/IMentionable;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/MentionableCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -795,12 +801,12 @@ public final class live/shuuyu/discordinteraktions/common/commands/options/Nulla
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/NumberCommandOption : live/shuuyu/discordinteraktions/common/commands/options/ChoiceableCommandOption, live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
 	public abstract fun getMaxValue ()Ljava/lang/Double;
 	public abstract fun getMinValue ()Ljava/lang/Double;
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Double;
+	public abstract fun parse (Ljava/util/List;)Ljava/lang/Double;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/NumberCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/NumberCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/Double;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/NumberCommandOption;Ljava/util/List;)Ljava/lang/Double;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/NumberCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -824,12 +830,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/Nu
 }
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/RoleCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Role;
+	public abstract fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Role;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/RoleCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/RoleCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/Role;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/RoleCommandOption;Ljava/util/List;)Lnet/dv8tion/jda/api/entities/Role;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/RoleCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -849,12 +855,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/Ro
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/StringCommandOption : live/shuuyu/discordinteraktions/common/commands/options/ChoiceableCommandOption, live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
 	public abstract fun getMaxLength ()Ljava/lang/Integer;
 	public abstract fun getMinLength ()Ljava/lang/Integer;
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/String;
+	public abstract fun parse (Ljava/util/List;)Ljava/lang/String;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/StringCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/StringCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Ljava/lang/String;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/StringCommandOption;Ljava/util/List;)Ljava/lang/String;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/StringCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -878,12 +884,12 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/St
 }
 
 public abstract interface class live/shuuyu/discordinteraktions/common/commands/options/UserCommandOption : live/shuuyu/discordinteraktions/common/commands/options/DiscordCommandOption {
-	public abstract fun parse (Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/User;
+	public abstract fun parse (Ljava/util/List;)Lnet/dv8tion/jda/api/entities/User;
 	public abstract fun register ()Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
 public final class live/shuuyu/discordinteraktions/common/commands/options/UserCommandOption$DefaultImpls {
-	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/UserCommandOption;Lnet/dv8tion/jda/api/interactions/commands/OptionMapping;)Lnet/dv8tion/jda/api/entities/User;
+	public static fun parse (Llive/shuuyu/discordinteraktions/common/commands/options/UserCommandOption;Ljava/util/List;)Lnet/dv8tion/jda/api/entities/User;
 	public static fun register (Llive/shuuyu/discordinteraktions/common/commands/options/UserCommandOption;)Lnet/dv8tion/jda/api/interactions/commands/build/OptionData;
 }
 
@@ -900,7 +906,68 @@ public abstract class live/shuuyu/discordinteraktions/common/commands/options/Us
 	public fun build ()Llive/shuuyu/discordinteraktions/common/commands/options/UserCommandOption;
 }
 
-public abstract class live/shuuyu/discordinteraktions/common/components/ComponentExecutor {
+public abstract interface class live/shuuyu/discordinteraktions/common/components/ButtonExecutor : live/shuuyu/discordinteraktions/common/components/ComponentExecutor {
+	public abstract fun onClick (Lnet/dv8tion/jda/api/entities/User;Llive/shuuyu/discordinteraktions/common/components/ComponentContext;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class live/shuuyu/discordinteraktions/common/components/ButtonExecutor$DefaultImpls {
+	public static fun signature (Llive/shuuyu/discordinteraktions/common/components/ButtonExecutor;)Ljava/lang/Object;
+}
+
+public class live/shuuyu/discordinteraktions/common/components/ButtonExecutorDeclaration : live/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration {
+	public fun <init> (Ljava/lang/Object;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public class live/shuuyu/discordinteraktions/common/components/ComponentContext : live/shuuyu/discordinteraktions/common/InteractionContext {
+	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Llive/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration;Lnet/dv8tion/jda/api/entities/Message;Ljava/lang/String;Lnet/dv8tion/jda/api/events/interaction/component/GenericComponentInteractionCreateEvent;)V
+	public final fun getComponentExecutorDeclaration ()Llive/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration;
+	public final fun getData ()Ljava/lang/String;
+	public final fun getDataOrNull ()Ljava/lang/String;
+	public final fun getMessage ()Lnet/dv8tion/jda/api/entities/Message;
+}
+
+public abstract interface class live/shuuyu/discordinteraktions/common/components/ComponentExecutor {
+	public abstract fun signature ()Ljava/lang/Object;
+}
+
+public final class live/shuuyu/discordinteraktions/common/components/ComponentExecutor$DefaultImpls {
+	public static fun signature (Llive/shuuyu/discordinteraktions/common/components/ComponentExecutor;)Ljava/lang/Object;
+}
+
+public abstract class live/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration {
+	public static final field Companion Llive/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration$Companion;
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/lang/String;Lkotlin/text/Regex;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/lang/String;Lkotlin/text/Regex;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/text/Regex;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getId ()Ljava/lang/String;
+	public final fun getParent ()Ljava/lang/Object;
+	public final fun setParent (Ljava/lang/Object;)V
+}
+
+public final class live/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration$Companion {
+	public final fun getID_REGEX ()Lkotlin/text/Regex;
+}
+
+public class live/shuuyu/discordinteraktions/common/components/GuildComponentContext : live/shuuyu/discordinteraktions/common/components/ComponentContext {
+	public fun <init> (Lnet/dv8tion/jda/api/entities/User;Lnet/dv8tion/jda/api/entities/channel/Channel;Llive/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration;Lnet/dv8tion/jda/api/entities/Message;Ljava/lang/String;Lnet/dv8tion/jda/api/entities/Guild;Lnet/dv8tion/jda/api/entities/Member;Lnet/dv8tion/jda/api/events/interaction/component/GenericComponentInteractionCreateEvent;)V
+	public final fun getGuild ()Lnet/dv8tion/jda/api/entities/Guild;
+	public final fun getMember ()Lnet/dv8tion/jda/api/entities/Member;
+}
+
+public abstract interface class live/shuuyu/discordinteraktions/common/components/SelectMenuExecutor : live/shuuyu/discordinteraktions/common/components/ComponentExecutor {
+	public abstract fun onSelect (Lnet/dv8tion/jda/api/entities/User;Llive/shuuyu/discordinteraktions/common/components/ComponentContext;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class live/shuuyu/discordinteraktions/common/components/SelectMenuExecutor$DefaultImpls {
+	public static fun signature (Llive/shuuyu/discordinteraktions/common/components/SelectMenuExecutor;)Ljava/lang/Object;
+}
+
+public class live/shuuyu/discordinteraktions/common/components/SelectMenuExecutorDeclaration : live/shuuyu/discordinteraktions/common/components/ComponentExecutorDeclaration {
+	public fun <init> (Ljava/lang/Object;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Object;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
 }
 
 public final class live/shuuyu/discordinteraktions/common/interactions/ResolvedObjects {
@@ -913,23 +980,19 @@ public final class live/shuuyu/discordinteraktions/common/interactions/ResolvedO
 	public final fun getUsers ()Ljava/util/Map;
 }
 
-public final class live/shuuyu/discordinteraktions/common/listener/InteractionsListener : net/dv8tion/jda/api/hooks/ListenerAdapter {
-	public static final field Companion Llive/shuuyu/discordinteraktions/common/listener/InteractionsListener$Companion;
-	public fun <init> (Llive/shuuyu/discordinteraktions/common/DiscordInteraKTions;)V
-	public final fun getInteraktions ()Llive/shuuyu/discordinteraktions/common/DiscordInteraKTions;
-	public fun onGenericComponentInteractionCreate (Lnet/dv8tion/jda/api/events/interaction/component/GenericComponentInteractionCreateEvent;)V
-	public fun onMessageContextInteraction (Lnet/dv8tion/jda/api/events/interaction/command/MessageContextInteractionEvent;)V
-	public fun onSlashCommandInteraction (Lnet/dv8tion/jda/api/events/interaction/command/SlashCommandInteractionEvent;)V
-	public fun onUserContextInteraction (Lnet/dv8tion/jda/api/events/interaction/command/UserContextInteractionEvent;)V
-}
-
-public final class live/shuuyu/discordinteraktions/common/listener/InteractionsListener$Companion : kotlinx/coroutines/CoroutineScope {
-	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
-}
-
 public final class live/shuuyu/discordinteraktions/common/message/ActionRowBuilder {
 	public fun <init> ()V
 	public final fun build ()Lnet/dv8tion/jda/api/interactions/components/ActionRow;
+	public final fun getComponents ()Ljava/util/List;
+	public final fun interactionButton (Lnet/dv8tion/jda/api/interactions/components/buttons/ButtonStyle;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun interactionButton$default (Llive/shuuyu/discordinteraktions/common/message/ActionRowBuilder;Lnet/dv8tion/jda/api/interactions/components/buttons/ButtonStyle;Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class live/shuuyu/discordinteraktions/common/message/AllowedMentionsBuilder {
+	public fun <init> ()V
+	public final fun getRoles ()Ljava/util/Set;
+	public final fun getTypes ()Ljava/util/Set;
+	public final fun getUsers ()Ljava/util/Set;
 }
 
 public final class live/shuuyu/discordinteraktions/common/message/EmbedBuilder : net/dv8tion/jda/api/EmbedBuilder {
@@ -1037,7 +1100,29 @@ public final class live/shuuyu/discordinteraktions/common/message/MessageBuilder
 
 public final class live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils {
 	public static final field INSTANCE Llive/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils;
-	public final fun convertOptions ()V
+	public final fun convertOptions (Llive/shuuyu/discordinteraktions/common/commands/SlashCommandExecutor;Lnet/dv8tion/jda/api/events/interaction/command/SlashCommandInteractionEvent;)Ljava/util/Map;
+	public final fun getLabelsConnectedToCommandDeclaration (Ljava/util/List;Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;)Llive/shuuyu/discordinteraktions/common/commands/ApplicationCommandDeclaration;
+	public final fun getLogger ()Lio/github/oshai/kotlinlogging/KLogger;
+	public final fun getNestedSubcommandDeclarationNames (Ljava/util/List;Lnet/dv8tion/jda/api/events/interaction/command/GenericCommandInteractionEvent;)Ljava/util/List;
+	public final fun getParentClass (Ljava/lang/Object;)Lkotlin/reflect/KClass;
+	public final fun getSubcommandDeclarationNames (Lnet/dv8tion/jda/api/events/interaction/command/GenericCommandInteractionEvent;)Ljava/util/List;
+}
+
+public final class live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$CommandGroupLabel : live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$CommandLabel {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public class live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$CommandLabel {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getLabel ()Ljava/lang/String;
+}
+
+public final class live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$RootCommandLabel : live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$CommandLabel {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$SubCommandLabel : live/shuuyu/discordinteraktions/common/utils/CommandDeclarationUtils$CommandLabel {
+	public fun <init> (Ljava/lang/String;)V
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/JDAAutocompleteChecker {
@@ -1051,8 +1136,9 @@ public final class live/shuuyu/discordinteraktions/common/utils/JDAAutocompleteC
 
 public final class live/shuuyu/discordinteraktions/common/utils/JDACommandChecker {
 	public static final field Companion Llive/shuuyu/discordinteraktions/common/utils/JDACommandChecker$Companion;
-	public fun <init> ()V
-	public final fun checkAndExecute ()V
+	public fun <init> (Llive/shuuyu/discordinteraktions/common/InteractionsManager;)V
+	public final fun checkAndExecute (Lnet/dv8tion/jda/api/events/interaction/GenericInteractionCreateEvent;)V
+	public final fun getInteractionsManager ()Llive/shuuyu/discordinteraktions/common/InteractionsManager;
 }
 
 public final class live/shuuyu/discordinteraktions/common/utils/JDACommandChecker$Companion : kotlinx/coroutines/CoroutineScope {

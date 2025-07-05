@@ -2,6 +2,7 @@ package live.shuuyu.discordinteraktions.common
 
 import live.shuuyu.discordinteraktions.common.commands.*
 import live.shuuyu.discordinteraktions.common.commands.options.InteraKTionsCommandOption
+import live.shuuyu.discordinteraktions.common.utils.JDACommandChecker
 import live.shuuyu.discordinteraktions.common.utils.await
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
@@ -13,6 +14,8 @@ public class DiscordInteraKTions(
 ) {
     // Not intended for public use, since you'll most likely use your own.
     private val jda: JDA = jda.build()
+    private val manager: InteractionsManager = InteractionsManager()
+    private val commandChecker = JDACommandChecker(manager)
 
     /**
      * Upserts guild-related commands into the given server.
@@ -77,7 +80,9 @@ public class DiscordInteraKTions(
                         this.addSubcommandGroups(convertSubcommandGroupDeclarationToJDA(subCommandGroup))
                     }
                 } else {
-                    val executor = declaration.executor // This shouldn't be nullable since we require an executor
+                    val executor = declaration.executor
+
+                    require(executor != null) { "Subcommand cannot exist without a master command!" }
 
                     executor.options.registeredOptions.forEach {
                         convertCommandOptionsToJDA(it)
@@ -95,7 +100,10 @@ public class DiscordInteraKTions(
             declaration.descriptionLocalizations?.let { setDescriptionLocalizations(it) }
         }
 
-        for (options in declaration.executor.options.registeredOptions) {
+        val executor = declaration.executor
+        require(executor != null) { "Subcommand cannot exist without a master command!" }
+
+        for (options in executor.options.registeredOptions) {
             convertCommandOptionsToJDA(options)
         }
 

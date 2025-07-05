@@ -8,7 +8,7 @@ import live.shuuyu.discordinteraktions.common.DiscordInteraKTions
 import live.shuuyu.discordinteraktions.common.requests.InteractionRequestState
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
 import live.shuuyu.discordinteraktions.common.requests.managers.InitialHttpRequestManager
-import live.shuuyu.discordinteraktions.common.utils.Observable
+import live.shuuyu.discordinteraktions.common.shared.utils.Observable
 
 public fun Gateway.installDiscordInteraKTions(interaKTions: DiscordInteraKTions) {
     on<InteractionCreate> {

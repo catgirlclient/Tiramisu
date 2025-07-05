@@ -1,4 +1,4 @@
-package live.shuuyu.discordinteraktions.common.utils
+package live.shuuyu.discordinteraktions.common.shared.utils
 
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.Continuation

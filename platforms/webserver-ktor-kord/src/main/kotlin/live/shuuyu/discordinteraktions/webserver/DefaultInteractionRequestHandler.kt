@@ -11,7 +11,7 @@ import kotlinx.serialization.json.put
 import live.shuuyu.discordinteraktions.common.DiscordInteraKTions
 import live.shuuyu.discordinteraktions.common.requests.InteractionRequestState
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
-import live.shuuyu.discordinteraktions.common.utils.Observable
+import live.shuuyu.discordinteraktions.common.shared.utils.Observable
 import live.shuuyu.discordinteraktions.webserver.requests.manager.WebServerRequestManager
 
 /**
@@ -20,7 +20,7 @@ import live.shuuyu.discordinteraktions.webserver.requests.manager.WebServerReque
  *
  * @param m The server that we'll handle the requests for.
  */
-public class DefaultInteractionRequestHandler(public val interaKTions: DiscordInteraKTions) : InteractionRequestHandler() {
+public class DefaultInteractionRequestHandler(private val interaKTions: DiscordInteraKTions) : InteractionRequestHandler() {
     public companion object {
         private val logger = KotlinLogging.logger {}
     }

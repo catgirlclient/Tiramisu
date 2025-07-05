@@ -53,3 +53,10 @@ public final class live/shuuyu/discordinteraktions/common/shared/utils/ColorKt {
 	public static final fun toDiscordInteraKTionsColor (Ljava/awt/Color;)I
 }
 
+public final class live/shuuyu/discordinteraktions/common/shared/utils/Observable {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun awaitChange (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun getValue ()Ljava/lang/Object;
+	public final fun setValue (Ljava/lang/Object;)V
+}
+

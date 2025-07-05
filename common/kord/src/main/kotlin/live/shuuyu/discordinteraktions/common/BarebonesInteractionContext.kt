@@ -9,7 +9,7 @@ import live.shuuyu.discordinteraktions.common.modals.ModalExecutorDeclaration
 import live.shuuyu.discordinteraktions.common.requests.InteractionRequestState
 import live.shuuyu.discordinteraktions.common.requests.RequestBridge
 import live.shuuyu.discordinteraktions.common.requests.managers.HttpRequestManager
-import live.shuuyu.discordinteraktions.common.utils.Observable
+import live.shuuyu.discordinteraktions.common.shared.utils.Observable
 
 /**
  * This is a "barebones" implementation of a [InteractionContext], where only the essential constructor parameters are present.

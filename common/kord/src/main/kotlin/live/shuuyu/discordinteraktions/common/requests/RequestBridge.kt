@@ -1,7 +1,7 @@
 package live.shuuyu.discordinteraktions.common.requests
 
 import live.shuuyu.discordinteraktions.common.requests.managers.RequestManager
-import live.shuuyu.discordinteraktions.common.utils.Observable
+import live.shuuyu.discordinteraktions.common.shared.utils.Observable
 
 /**
  * Bridges code between a interaction handler and the request managers

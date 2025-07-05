@@ -1,8 +1,8 @@
 plugins {
-    kotlin("jvm") version "2.1.20"
+    id("live.shuuyu.discordinteraktions.convention")
 }
 
 dependencies {
-    implementation(project(":platforms:gateway-jda"))
     implementation(libs.jda)
+    implementation(libs.logback)
 }

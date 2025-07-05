@@ -3,12 +3,6 @@ plugins {
     id("live.shuuyu.discordinteraktions.publishing")
 }
 
-group = "net.perfectdreams.discordinteraktions"
-
-repositories {
-    maven("https://m2.dv8tion.net/releases")
-}
-
 dependencies {
     api(project(":common:jda"))
     implementation(libs.jda)

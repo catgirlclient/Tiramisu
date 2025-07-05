@@ -1,7 +1,7 @@
 package live.shuuyu.discordinteraktions.common.commands.options
 
 import live.shuuyu.discordinteraktions.common.autocomplete.AutocompleteHandler
-import net.dv8tion.jda.api.entities.Mentions
+import net.dv8tion.jda.api.entities.IMentionable
 import net.dv8tion.jda.api.entities.Message.Attachment
 import net.dv8tion.jda.api.entities.Role
 import net.dv8tion.jda.api.entities.User
@@ -258,7 +258,7 @@ public class NullableChannelCommandOptionBuilder(
     override val required: Boolean = false
 }
 
-public abstract class MentionableCommandOptionBuilderBase<T> : DiscordCommandOptionBuilder<T, Mentions>() {
+public abstract class MentionableCommandOptionBuilderBase<T> : DiscordCommandOptionBuilder<T, IMentionable>() {
     override fun build(): MentionableCommandOption = DefaultMentionableCommandOption(
         name,
         required,

@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
  *
  * @param name The name of the slash command.
  * @param description The description of the slash command.
- * @param executor Executes the sequestered code when the command is executed.
  *
  * @see SlashCommandExecutor
  * @since 1.0.0
@@ -18,19 +17,18 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions
 public fun slashCommand(
     name: String,
     description: String,
-    executor: SlashCommandExecutor,
     builder: SlashCommandDeclarationBuilder.() -> (Unit) = {}
-): SlashCommandDeclarationBuilder = SlashCommandDeclarationBuilder(name, description, executor).apply(builder)
+): SlashCommandDeclarationBuilder = SlashCommandDeclarationBuilder(name, description).apply(builder)
 
 @InteraKTionsDsl
 public class SlashCommandDeclarationBuilder(
     public val name: String,
     public val description: String,
-    public val executor: SlashCommandExecutor
 ) {
     public var nameLocalization: Map<DiscordLocale, String>? = null
     public var descriptionLocalization: Map<DiscordLocale, String>? = null
     public var defaultMemberPermissions: DefaultMemberPermissions? = null
+    public var executor: SlashCommandExecutor? = null
     public var subcommands: List<SlashCommandDeclarationBuilder> = mutableListOf()
     public var subcommandGroups: List<SlashCommandGroupDeclarationBuilder> = mutableListOf()
     public var contexts: List<InteractionContextType>? = null
@@ -39,10 +37,9 @@ public class SlashCommandDeclarationBuilder(
     public fun subcommand(
         name: String,
         description: String,
-        executor: SlashCommandExecutor,
         block: SlashCommandDeclarationBuilder.() -> (Unit)
     ) {
-        subcommands += SlashCommandDeclarationBuilder(name, description, executor).apply(block)
+        subcommands += SlashCommandDeclarationBuilder(name, description).apply(block)
     }
 
     public fun subcommandGroup(name: String, description: String, block: SlashCommandGroupDeclarationBuilder.() -> (Unit)) {
@@ -76,10 +73,9 @@ public class SlashCommandGroupDeclarationBuilder(
     public fun subcommand(
         name: String,
         description: String,
-        executor: SlashCommandExecutor,
         builder: SlashCommandDeclarationBuilder.() -> (Unit)
     ) {
-        subcommands += SlashCommandDeclarationBuilder(name, description, executor).apply(builder)
+        subcommands += SlashCommandDeclarationBuilder(name, description).apply(builder)
     }
 
     public fun build(): SlashCommandGroupDeclaration = InteraKTionsSlashCommandGroupDeclaration (

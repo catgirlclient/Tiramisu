@@ -1,7 +1,7 @@
 package live.shuuyu.discordinteraktions.common.commands.options
 
 import live.shuuyu.discordinteraktions.common.autocomplete.AutocompleteHandler
-import net.dv8tion.jda.api.entities.Mentions
+import net.dv8tion.jda.api.entities.IMentionable
 import net.dv8tion.jda.api.entities.Message.Attachment
 import net.dv8tion.jda.api.entities.Role
 import net.dv8tion.jda.api.entities.User
@@ -16,7 +16,7 @@ public interface InteraKTionsCommandOption<T> {
     public val name: String
 
     public fun register(): OptionData
-    public fun parse(option: OptionMapping): T?
+    public fun parse(option: List<OptionMapping>): T?
 }
 
 public interface NameableCommandOption<T>: InteraKTionsCommandOption<T> {
@@ -53,8 +53,8 @@ public interface StringCommandOption: DiscordCommandOption<String>, ChoiceableCo
         }
     }
 
-    override fun parse(option: OptionMapping): String? {
-        return option.asString
+    override fun parse(option: List<OptionMapping>): String? {
+        return option.firstOrNull { it.name == name }?.asString
     }
 }
 
@@ -89,8 +89,8 @@ public interface IntegerCommandOption: DiscordCommandOption<Long>, ChoiceableCom
         }
     }
 
-    override fun parse(option: OptionMapping): Long? {
-        return option.asLong
+    override fun parse(option: List<OptionMapping>): Long? {
+        return option.firstOrNull { it.name == name }?.asLong
     }
 }
 
@@ -125,8 +125,8 @@ public interface NumberCommandOption: DiscordCommandOption<Double>, ChoiceableCo
         }
     }
 
-    override fun parse(option: OptionMapping): Double? {
-        return option.asDouble
+    override fun parse(option: List<OptionMapping>): Double? {
+        return option.firstOrNull { it.name == name }?.asDouble
     }
 }
 
@@ -151,8 +151,8 @@ public interface BooleanCommandOption: DiscordCommandOption<Boolean> {
         }
     }
 
-    override fun parse(option: OptionMapping): Boolean? {
-        return option.asBoolean
+    override fun parse(option: List<OptionMapping>): Boolean? {
+        return option.firstOrNull { it.name == name }?.asBoolean
     }
 }
 
@@ -173,8 +173,8 @@ public interface UserCommandOption: DiscordCommandOption<User> {
         }
     }
 
-    override fun parse(option: OptionMapping): User? {
-        return option.asUser
+    override fun parse(option: List<OptionMapping>): User? {
+        return option.firstOrNull { it.name == name }?.asUser
     }
 }
 
@@ -195,8 +195,8 @@ public interface RoleCommandOption: DiscordCommandOption<Role> {
         }
     }
 
-    override fun parse(option: OptionMapping): Role? {
-        return option.asRole
+    override fun parse(option: List<OptionMapping>): Role? {
+        return option.firstOrNull { it.name == name }?.asRole
     }
 }
 
@@ -220,8 +220,8 @@ public interface ChannelCommandOption: DiscordCommandOption<Channel> {
         }
     }
 
-    override fun parse(option: OptionMapping): Channel? {
-        return option.asChannel
+    override fun parse(option: List<OptionMapping>): Channel? {
+        return option.firstOrNull { it.name == name }?.asChannel
     }
 }
 
@@ -234,7 +234,7 @@ public data class DefaultChannelCommandOption(
     override val channelTypes: List<ChannelType>?
 ): ChannelCommandOption
 
-public interface MentionableCommandOption: DiscordCommandOption<Mentions> {
+public interface MentionableCommandOption: DiscordCommandOption<IMentionable> {
     override fun register(): OptionData = OptionData(OptionType.MENTIONABLE, name, description).apply {
         with(this@MentionableCommandOption) {
             setRequired(required)
@@ -243,8 +243,8 @@ public interface MentionableCommandOption: DiscordCommandOption<Mentions> {
         }
     }
 
-    override fun parse(option: OptionMapping): Mentions? {
-        return option.mentions
+    override fun parse(option: List<OptionMapping>): IMentionable? {
+        return option.firstOrNull { it.name == name }?.asMentionable
     }
 }
 
@@ -265,8 +265,8 @@ public interface AttachmentCommandOption: DiscordCommandOption<Attachment> {
         }
     }
 
-    override fun parse(option: OptionMapping): Attachment? {
-        return option.asAttachment
+    override fun parse(option: List<OptionMapping>): Attachment? {
+        return option.firstOrNull { it.name == name }?.asAttachment
     }
 }
 

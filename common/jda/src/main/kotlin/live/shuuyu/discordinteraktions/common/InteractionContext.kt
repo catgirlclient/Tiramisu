@@ -3,6 +3,7 @@ package live.shuuyu.discordinteraktions.common
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.entities.channel.Channel
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
+import net.dv8tion.jda.api.events.interaction.command.GenericContextInteractionEvent
 
 public open class InteractionContext(
     public val user: User,

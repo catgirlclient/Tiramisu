@@ -1,3 +1,10 @@
 plugins {
-    kotlin("jvm") version "2.1.21"
+    id("live.shuuyu.discordinteraktions.convention")
+}
+
+dependencies {
+    implementation(libs.kord.common)
+    implementation(libs.kord.core)
+    implementation(libs.kord.rest)
+    implementation(libs.kord.gateway)
 }

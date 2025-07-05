@@ -17,7 +17,8 @@ over their code, and how they want the feature to be developed.
 ## Supported Libraries
 Any libraries not mentioned are explicitly not supported, and we have no interest in providing support for such libraries.
 
-| Framework                                 | Support      | Notes                                                                                                                                                                     |
-|-------------------------------------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [JDA](https://github.com/discord-jda/JDA) | Full Support | N/A                                                                                                                                                                       |
-| [Kord](https://github.com/kordlib/kord)   | Supported    | Officially supports both Gateway and Webserver interactions. However, keep in mind that Kord's release cycles are incredibly slow, so some features may not be supported. |
+| Framework                                           | Support      | Notes                                                                                                                                                                     |
+|-----------------------------------------------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [JDA](https://github.com/discord-jda/JDA)           | Full Support | N/A                                                                                                                                                                       |
+| [Kord](https://github.com/kordlib/kord)             | Supported    | Officially supports both Gateway and Webserver interactions. However, keep in mind that Kord's release cycles are incredibly slow, so some features may not be supported. |
+| [Discord4J](https://github.com/Discord4J/Discord4J) | Out of Scope | We currently have no plans of supporting Discord4J, and any attempts to have parity with the library is unsupported.                                                      |

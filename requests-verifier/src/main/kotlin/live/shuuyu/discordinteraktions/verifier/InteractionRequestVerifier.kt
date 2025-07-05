@@ -16,7 +16,7 @@ public class InteractionRequestVerifier(publicKey: String) {
         private val INTERACTIONS_ALGORITHM = "ed25519"
         private val kf = KeyFactory.getInstance(INTERACTIONS_ALGORITHM)
     }
-    public val signingKey: EdECPublicKeySpec = generateKeySpec(hex(publicKey))
+    private val signingKey: EdECPublicKeySpec = generateKeySpec(hex(publicKey))
     private val generatedPublicKey = kf.generatePublic(signingKey)
 
     /**

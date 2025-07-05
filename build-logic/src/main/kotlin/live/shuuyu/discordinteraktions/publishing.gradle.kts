@@ -50,7 +50,7 @@ tasks {
                     val repoPassword = project.findProject("reposilite.password")
 
                     if (repoUser != null && repoPassword != null) {
-                        maven("https://maven.shuyu.me/releases") {
+                        maven("https://maven.shuuyu.live/releases") {
                             name = "reposilite-public"
                             credentials {
                                 username = repoUser.toString()
