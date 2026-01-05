@@ -1,15 +1,18 @@
 [versions]
-kotlin = "2.1.10"
-kord = "0.16.0-SNAPSHOT"
-dokka = "2.0.0"
-binary-compatibility-validator = "0.17.0"
-ktor = "3.1.0"
-serialization = "1.8.0"
-coroutines = "1.10.1"
-kotlin-logging = "7.0.4"
-logback = "1.5.16"
+datetime = "0.7.1"
+jda = "6.2.1"
+kotlin = "2.3.0"
+kord = "0.17.0-SNAPSHOT"
+dokka = "2.1.0"
+ktor = "3.3.3"
+serialization = "1.10.0-RC"
+coroutines = "1.10.2"
+kotlin-logging = "7.0.14"
+logback = "1.5.23"
 
 [libraries]
+jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
+
 kord-core = { module = "dev.kord:kord-core", version.ref = "kord" }
 kord-rest = { module = "dev.kord:kord-rest", version.ref = "kord" }
 kord-common = { module = "dev.kord:kord-common", version.ref = "kord" }
@@ -18,6 +21,7 @@ ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor"
 
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
 
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
 
@@ -27,12 +31,21 @@ logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-binary-compatibility-validator-plugin = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 
 [bundles]
+kotlin = [
+    "coroutines-core",
+    "serialization-json",
+    "datetime"
+]
+
 buildSrc = [
     "kotlin-plugin",
     "kotlin-serialization-plugin",
-    "dokka-plugin",
-    "binary-compatibility-validator-plugin"
+    "dokka-plugin"
 ]

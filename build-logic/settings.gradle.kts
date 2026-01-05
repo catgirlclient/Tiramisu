@@ -1,8 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
-pluginManagement {
-    includeBuild("build-logic")
+rootProject.name = "build-logic"
 
+pluginManagement {
     plugins {
         id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
     }
@@ -16,16 +16,11 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
-        maven("https://snapshots.kord.dev/")
-        maven("https://oss.sonatype.org/content/repositories/snapshots")
+    }
+
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
     }
 }
-
-rootProject.name = "Tiramisu"
-
-
-include(
-    ":common",
-    ":jda-impl",
-    ":kord-impl"
-)

@@ -4,6 +4,8 @@ plugins {
 }
 
 dependencies {
+    api(project(":common"))
     implementation(libs.bundles.kotlin)
+    implementation(libs.jda)
     implementation(libs.kotlin.logging)
 }
