@@ -1,9 +1,0 @@
-public final class live/shuuyu/discordinteraktions/verifier/InteractionRequestVerifier {
-	public static final field Companion Llive/shuuyu/discordinteraktions/verifier/InteractionRequestVerifier$Companion;
-	public fun <init> (Ljava/lang/String;)V
-	public final fun verifyKey (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
-}
-
-public final class live/shuuyu/discordinteraktions/verifier/InteractionRequestVerifier$Companion {
-}
-

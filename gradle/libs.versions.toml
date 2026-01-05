@@ -1,15 +1,14 @@
 [versions]
-datetime = "0.6.2"
-jda = "5.3.0"
-kotlin = "2.1.21"
-kord = "0.16.0-SNAPSHOT"
-dokka = "2.0.0"
-binary-compatibility-validator = "0.17.0"
-ktor = "3.1.0"
-serialization = "1.8.0"
-coroutines = "1.10.1"
-kotlin-logging = "7.0.4"
-logback = "1.5.16"
+datetime = "0.7.1"
+jda = "6.2.1"
+kotlin = "2.3.0"
+kord = "0.17.0-SNAPSHOT"
+dokka = "2.1.0"
+ktor = "3.3.3"
+serialization = "1.10.0-RC"
+coroutines = "1.10.2"
+kotlin-logging = "7.0.14"
+logback = "1.5.23"
 
 [libraries]
 jda = { module = "net.dv8tion:JDA", version.ref = "jda" }
@@ -32,10 +31,8 @@ logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-binary-compatibility-validator-plugin = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
 
 [plugins]
-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator"}
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
@@ -50,6 +47,5 @@ kotlin = [
 buildSrc = [
     "kotlin-plugin",
     "kotlin-serialization-plugin",
-    "dokka-plugin",
-    "binary-compatibility-validator-plugin"
+    "dokka-plugin"
 ]

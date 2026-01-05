@@ -1,4 +1,0 @@
-public final class live/shuuyu/discordinteraktions/platforms/jda/GatewayJDAInteractionsKt {
-	public static final fun installDiscordInteraKTions (Lnet/dv8tion/jda/api/JDA;Llive/shuuyu/discordinteraktions/common/DiscordInteraKTions;)V
-}
-
